@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system para Lista da Vez - Sistema de gestão de atendimento em lojas físicas
+Todas as cores em HSL para máxima compatibilidade
+*/
+
+@layer base {
+  :root {
+    --background: 220 14% 10%;
+    --foreground: 220 14% 96%;
+    --card: 220 14% 12%;
+    --card-foreground: 220 14% 96%;
+    --popover: 220 14% 12%;
+    --popover-foreground: 220 14% 96%;
+    --primary: 205 98% 57%;
+    --primary-foreground: 205 98% 15%;
+    --primary-glow: 205 98% 67%;
+    --secondary: 220 14% 20%;
+    --secondary-foreground: 220 14% 80%;
+    --muted: 220 14% 20%;
+    --muted-foreground: 220 14% 50%;
+    --accent: 224 64% 33%;
+    --accent-foreground: 204 94% 94%;
+    --accent-glow: 224 64% 43%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 25%;
+    --input: 220 14% 25%;
+    --ring: 205 98% 57%;
+    --radius: 0.5rem;
+
+    /* Gradientes personalizados */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success-glow)));
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+    /* Sombras com glow */
+    --shadow-primary: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-accent: 0 0 30px hsl(var(--accent) / 0.3);
+    --shadow-success: 0 0 30px hsl(var(--success) / 0.3);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    /* Transições */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Cores da Sidebar para o tema escuro */
+    --sidebar-background: 220 14% 10%;
+    --sidebar-foreground: 220 14% 96%;
+    --sidebar-primary: 205 98% 57%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 64% 33%;
+    --sidebar-accent-foreground: 204 94% 94%;
+    --sidebar-border: 220 14% 25%;
+    --sidebar-ring: 205 98% 57%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+    --primary: 205 98% 27%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 205 98% 37%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 14% 34%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 14% 45%;
+    --accent: 204 94% 94%;
+    --accent-foreground: 224 64% 33%;
+    --accent-glow: 204 94% 84%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 205 98% 27%;
+    --radius: 0.5rem;
+
+    /* Gradientes para tema claro */
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+    /* Cores da Sidebar para o tema claro */
+    --sidebar-background: 220 14% 96%; /* Cor secondary como fundo */
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 205 98% 27%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 204 94% 94%;
+    --sidebar-accent-foreground: 224 64% 33%;
+    --sidebar-border: 220 14% 90%;
+    --sidebar-ring: 205 98% 27%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans overflow-x-hidden;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--card)));
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/20;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    @apply rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-accent);
+  }
+}
+
+@layer components {
+  /* Componentes glass morphism */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+
+  .glow-success {
+    box-shadow: var(--shadow-success);
+  }
+
+  /* Sombras para cards */
+  .card-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .login-bg {
+    background-image: url('https://images.unsplash.com/photo-1569098642324-f7de04a84f59?q=80&w=2835&auto=format&fit=crop');
+  }
+
+  /* Animações */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+
+  /* Gradientes como classes utilitárias */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .bg-gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-spring {
+    transition: var(--transition-spring);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
